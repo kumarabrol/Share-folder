@@ -35,6 +35,7 @@ export class FileExplorerComponent  {
   }
 
   navigate(element: FileElement) {
+    console.info('in navigate..'+element);
     if (element.isFolder) {
       this.navigatedDown.emit(element);
     }
@@ -68,6 +69,7 @@ export class FileExplorerComponent  {
   }
 
   openMenu(event: MouseEvent, viewChild: MatMenuTrigger) {
+    console.info('in openMenu..'+viewChild);
     event.preventDefault();
     viewChild.openMenu();
   }

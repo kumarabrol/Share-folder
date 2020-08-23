@@ -1,17 +1,16 @@
-<body>
-	<p>
-		Place your files here
-	</p>
-	<form action="/action_page.php">
-  <input type="file" id="myFile" name="filename">
-  <input type="submit">
-</form>
-</body>
-
-<body>
-	<p>
-		Distribute your files here
-
-		Send to:
-	</p>
-</body>
+<div style="padding: 100px; height: 100%; box-sizing: border-box;">
+  <mat-card style="height: 100%; box-sizing: border-box; padding:0">
+    <app-file-explorer
+      [fileElements]="fileElements | async"
+      [path]="currentPath"
+      [canNavigateUp]="canNavigateUp"
+      (folderAdded)="addFolder($event)"
+      (elementRemoved)="removeElement($event)"
+      (navigatedDown)="navigateToFolder($event)"
+      (navigatedUp)="navigateUp()"
+      (elementRenamed)="renameElement($event)"
+      (elementMoved)="moveElement($event)"
+    >
+    </app-file-explorer>
+  </mat-card>
+</div>
