@@ -65,6 +65,7 @@ export class StudentComponent implements OnInit {
   }
 
   moveElement(event: { element: FileElement; moveTo: FileElement }) {
+
     this.fileService.update(event.element.id, { parent: event.moveTo.id });
     this.updateFileElementQuery();
   }
@@ -79,6 +80,7 @@ export class StudentComponent implements OnInit {
   }
 
   pushToPath(path: string, folderName: string) {
+  	
     let p = path ? path : '';
     p += `${folderName}/`;
     return p;

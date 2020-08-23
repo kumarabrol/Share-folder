@@ -3,6 +3,7 @@
   <span style="margin-left: 8px">{{path || 'Files'}}</span>
   <span class="spacer"></span>
   <mat-icon class="pointer" (click)="openNewFolderDialog()">create_new_folder</mat-icon>
+  <mat-icon class="pointer" (click)="openNewFolderDialog()">upload_file</mat-icon>
 </mat-toolbar>
 
 <div class="container" fxFlex fxLayout="row" fxLayoutAlign="space-between stretch">
@@ -39,7 +40,9 @@
 
 <mat-menu #moveToMenu="matMenu">
   <ng-template matMenuContent let-self="self">
+  <!--    <button mat-menu-item (click)="moveElement(self, element)">All</button> -->
     <ng-container *ngFor="let element of fileElements">
+       <button *ngIf="!element.isFolder"  mat-menu-item (click)="moveElement(self, element)">All</button>
       <button *ngIf="element.isFolder && element.id !== self.id" mat-menu-item (click)="moveElement(self, element)">{{element.name}}</button>
     </ng-container>
   </ng-template>

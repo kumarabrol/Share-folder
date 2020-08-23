@@ -24,7 +24,10 @@ export class TeacherComponent implements OnInit {
   //  this.fileService.add({ name: 'Aryeman', isFolder: true, parent: 'root' });
     const folderC =this.fileService.add({ name: '2020-08-22', isFolder: true, parent: folderA.id });
     this.fileService.add({ name: 'Asssignment_1', isFolder: false, parent: folderC.id  });
-    this.fileService.add({ name: 'Asssignment_2', isFolder: false, parent: 'root' });
+    this.fileService.add({ name: 'Asssignment_1', isFolder: false, parent: 'root' });
+
+    const folderd =this.fileService.add({ name: '2020-08-22', isFolder: true, parent: folderB.id });
+    this.fileService.add({ name: 'Asssignment_1', isFolder: false, parent: folderd.id  });
 
     this.updateFileElementQuery();
   }
@@ -38,6 +41,8 @@ export class TeacherComponent implements OnInit {
     this.fileService.delete(element.id);
     this.updateFileElementQuery();
   }
+
+  
 
   navigateToFolder(element: FileElement) {
     this.currentRoot = element;
@@ -59,6 +64,7 @@ export class TeacherComponent implements OnInit {
   }
 
   moveElement(event: { element: FileElement; moveTo: FileElement }) {
+  	console.info('in moveElement...'+event.element);
     this.fileService.update(event.element.id, { parent: event.moveTo.id });
     this.updateFileElementQuery();
   }
@@ -70,15 +76,19 @@ export class TeacherComponent implements OnInit {
 
   updateFileElementQuery() {
     this.fileElements = this.fileService.queryInFolder(this.currentRoot ? this.currentRoot.id : 'root');
+    console.info(this.fileElements.source);
+   // this.fileElements.
   }
 
   pushToPath(path: string, folderName: string) {
+  	console.info('in pushToPath...'+path);
     let p = path ? path : '';
     p += `${folderName}/`;
     return p;
   }
 
   popFromPath(path: string) {
+  		console.info('in popFromPath...'+path);
     let p = path ? path : '';
     let split = p.split('/');
     split.splice(split.length - 2, 1);
